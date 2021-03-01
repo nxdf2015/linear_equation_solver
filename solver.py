@@ -7,5 +7,7 @@ from utilities import parse_arg
 linear = LinearSystem.from_file(infile)
 
 
-linear.solve()
+if linear.solve():
+    linear.get_result()
 linear.save_result()
+

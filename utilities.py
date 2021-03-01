@@ -5,8 +5,8 @@ def parse_line(line):
 
 def get_data(filename="in.txt"):
     with open(filename,"r") as f:
-        n = int(f.readline())
-        return [parse_line(f.readline()) for _ in range(n)]
+        n,m = list(map(int,f.readline().split(" ")))
+        return [parse_line(f.readline()) for _ in range(m)]
 
 
 def parse_arg():
