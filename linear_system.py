@@ -110,9 +110,6 @@ class LinearSystem:
                 self.rows[j] += (self.rows[row_id] * (-1. * d))
         return True
 
-    def reorder_value(self):
-        for i, j in self.swaps:
-            self.result[i], self.result[j] = self.result[j], self.result[i]
 
     def compute_result(self):
         result = [0] * (self.cols)
@@ -158,3 +155,7 @@ class LinearSystem:
             self.rows[row][col_id] = self.rows[row][find_id]
             self.rows[row][find_id] = temp
         self.swaps.append((col_id, find_id))
+
+    def reorder_value(self):
+        for i, j in self.swaps:
+            self.result[i], self.result[j] = self.result[j], self.result[i]
