@@ -100,7 +100,6 @@ class LinearSystem:
                 return False
 
             c = self.rows[row_id][col_id]
-            print(c,"value de c" , c == 1, self.rows[row_id])
             if not c == 1:
                 self.rows[row_id] = self.rows[row_id] * (1 / c)
                 print(f"R{row_id} * {1 / c} -> R{row_id}")
