@@ -11,7 +11,7 @@ class Row:
         return Row(data)
 
     def __mul__(self, other):
-        if type(other) == float:
+        if type(other) == float or type(other) == complex:
             data = [v * other for v in self.values]
 
             return Row(data)
@@ -100,15 +100,14 @@ class LinearSystem:
                 return False
 
             c = self.rows[row_id][col_id]
+            print(c,"value de c" , c == 1, self.rows[row_id])
             if not c == 1:
                 self.rows[row_id] = self.rows[row_id] * (1 / c)
                 print(f"R{row_id} * {1 / c} -> R{row_id}")
-
             for j in range(row_id + 1, self.size):
                 d = self.rows[j][col_id]
                 print(f"{- 1 * d} * R{row_id} -> R{j}")
                 self.rows[j] += (self.rows[row_id] * (-1. * d))
-
         return True
 
     def reorder_value(self):
@@ -124,6 +123,7 @@ class LinearSystem:
                 value -= x * v
 
             result[id_row] = value / self.rows[id_row][id_row]
+
         self.result = result
         self.reorder_value()
         print(*self.result, sep=" ")
@@ -134,7 +134,6 @@ class LinearSystem:
 
         if len(self.rows) < self.cols:
             self.result = ["Infinitely many solutions"]
-
         if len(self.result) == 1:
             print(self.result[0])
         else:

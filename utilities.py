@@ -1,7 +1,12 @@
 import argparse
 
 def parse_line(line):
-    return list(map(float,line.split(" ")))
+    try:
+        return list(map(float,line.split(" ")))
+    except ValueError as e:
+        return list(map(complex,line.split(" ")))
+
+
 
 def get_data(filename="in.txt"):
     with open(filename,"r") as f:
